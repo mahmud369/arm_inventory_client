@@ -1,27 +1,36 @@
 import Vue from 'vue';
 import App from './App.vue';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from './router';
 import store from './store';
-import LoadScript from 'vue-plugin-load-script';
+//import LoadScript from 'vue-plugin-load-script';
 
 Vue.config.productionTip = false;
 
-Vue.use(LoadScript);
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
 
-Vue.loadScript("https://code.jquery.com/jquery-3.5.1.js").then(() => { // JQuery
-  console.log("Successfully loaded: code.jquery.com/jquery-3.5.1.js");
+//Vue.use(LoadScript);
 
-
-  Vue.loadScript("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js").then(() => { // Bootstrap; Nested because this script needs to be loaded after JQuery
-    console.log("Successfully loaded: stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js");
-  }).catch(() => {
-    alert('Failed to load: stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js');
-  });
+// Vue.loadScript("https://code.jquery.com/jquery-3.5.1.js").then(() => { // JQuery
+//   console.log("Successfully loaded: code.jquery.com/jquery-3.5.1.js");
 
 
-}).catch(() => {
-  alert('Failed to load: code.jquery.com/jquery-3.5.1.js');
-});
+//   Vue.loadScript("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js").then(() => { // Bootstrap; Nested because this script needs to be loaded after JQuery
+//     console.log("Successfully loaded: stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js");
+//   }).catch(() => {
+//     alert('Failed to load: stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js');
+//   });
+
+
+// }).catch(() => {
+//   alert('Failed to load: code.jquery.com/jquery-3.5.1.js');
+// });
 
 
 /* Vue.loadScript("@/assets/js/scripts.js").then(() => {
