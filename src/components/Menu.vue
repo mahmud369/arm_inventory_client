@@ -3,7 +3,9 @@
     <ul>
 		<li><router-link to="/">Home</router-link></li>
 		<li><router-link to="/login">Login</router-link></li>
+    <li><a href="javascript:;">Mahmud Hassan</a></li>
 		<li><router-link to="/dashboard">Dashboard</router-link></li>
+    <li><a href="javascript:;">Log Out</a></li>
     </ul>
   </div>
 </template>
