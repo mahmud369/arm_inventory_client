@@ -2,7 +2,7 @@
   <div>
     Login Page
 
-{{form_validation}}
+    {{form_validation}}
 
     <form @submit.prevent="login_submit">
       <table>
@@ -18,7 +18,7 @@
           <td class="right-align">Password</td>
           <td>
             <input type="password" name="user_pw" id="user_pw" v-model="form.password" />
-            <label v-if="form_validation.email.invalid"></label>
+            <label v-if="form_validation.password.invalid">{{ form_validation.password.message }}</label>
           </td>
         </tr>
 
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: "Login",
   components: {
@@ -53,29 +55,46 @@ export default {
     };
   },
   methods: {
-    async login_submit() {
-      // let http_response = this.$axios
-      //   .post("/login", this.form)
-      //   .catch((error) => {});
-      // console.log(http_response);
+    initialize(){
+      this.form_validation.email.invalid = this.form_validation.password.invalid = false; // Reset Invalid to FALSE
+      this.form_validation.email.message = this.form_validation.password.message = ""; // Reset Invalid message
+    },
 
-      this.$axios
-        .post("/login", this.form)
+    ...mapActions({
+      sign_into_app: 'auth/sign_in'
+    }),
+
+    login_submit() {
+      this.sign_into_app(this.form);
+    },
+
+    /*async login_submit() {
+
+      this.initialize();
+
+      this.$axios.post("/login", this.form)
         .then((response) => {
           console.log("======> "+response);
         })
-        .catch((error) => {
+        .catch((error) => { 
           if(error.response && (error.response.status >= 400)){
-            console.log(error.response.data);
-            console.log("\n ==>>>>"+error.response.status+"\n");
-            console.log(error.response.headers);
+            ///console.log(error.response.data);
+            ///console.log("\n ==>>>>"+error.response.status+"\n");
+            ///console.log(error.response.headers);
 
-            this.form_validation.email.message = error.response.data.email[0];
-            this.form_validation.email.invalid = true;
-
+            if("email" in error.response.data){
+              this.form_validation.email.message = error.response.data.email[0];
+              this.form_validation.email.invalid = true;
+            }
+            if("password" in error.response.data){
+              this.form_validation.password.message = error.response.data.password[0];
+              this.form_validation.password.invalid = true;
+            }
+            //console.clear();
           }
         });
-    },
+    },*/
+
   },
 };
 </script>
