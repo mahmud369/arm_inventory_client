@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
 
 export default {
   name: "Login",
@@ -65,7 +65,13 @@ export default {
     }),
 
     login_submit() {
-      this.sign_into_app(this.form);
+      this.sign_into_app(this.form).then(()=>{
+        this.$router.replace({
+          name: 'dashboard'
+        });
+      }).catch(()=>{
+        console.log("Failed!!! :(")
+      });
     },
 
     /*async login_submit() {

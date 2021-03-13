@@ -7,8 +7,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from './router';
 import store from './store';
 //import LoadScript from 'vue-plugin-load-script';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+require('@/store/subscriber');
 
 Vue.config.productionTip = false;
 
