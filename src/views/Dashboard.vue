@@ -2,22 +2,14 @@
   <div>
     Dashboard Page
     <b-table striped small hover :items="items"></b-table>
-    {{ get_token }}
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Dashboard",
   components: {
     //
-  },
-  computed: {
-    ...mapGetters({
-      get_token: "auth/get_token",
-    }),
   },
   data() {
     return {
